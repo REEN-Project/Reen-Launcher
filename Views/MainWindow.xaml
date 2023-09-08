@@ -1,0 +1,612 @@
+﻿<Window
+    x:Class="ReenLauncher.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:ReenLauncher.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:ReenLauncher.ViewModels"
+    Title="REEN"
+    Width="320"
+    Height="430"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="/ReenLauncher;component/Resources/Fonts/#SF Pro Display"
+    Icon="/Resources/Icons/logo.png"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                        FillBehavior="HoldEnd"
+                        Storyboard.TargetProperty="(Window.Opacity)"
+                        From="0.0"
+                        To="1.0"
+                        Duration="0:0:0:0.2" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Canvas>
+
+        <!--  Center element  -->
+        <Border
+            Canvas.Top="35"
+            Width="320"
+            Height="395"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Background="#27273f">
+
+            <Canvas>
+
+                <Label
+                    Canvas.Left="52"
+                    Canvas.Top="116"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="Игровой ник"
+                    FontSize="14"
+                    Foreground="#FF444469" />
+
+                <Border
+                    Canvas.Left="52"
+                    Canvas.Top="320"
+                    Width="216"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Background="#FF9DF531"
+                    CornerRadius="1"
+                    Cursor="Hand"
+                    IsEnabled="{Binding isEnabledGame, UpdateSourceTrigger=PropertyChanged}"
+                    Opacity="0.5">
+
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="20"
+                            Opacity="0.0"
+                            ShadowDepth="0"
+                            Color="#FF9DF531" />
+                    </Border.Effect>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding toPlay}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)"
+                                        From="0.0"
+                                        To="0.6"
+                                        Duration="0:0:0:0.2" />
+
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Opacity)"
+                                        From="0.5"
+                                        To="0.7"
+                                        Duration="0:0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)"
+                                        From="0.6"
+                                        To="0.0"
+                                        Duration="0:0:0:0.2" />
+
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Opacity)"
+                                        From="0.7"
+                                        To="0.5"
+                                        Duration="0:0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Border.Triggers>
+
+                    <Label
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Играть"
+                        FontSize="16"
+                        Foreground="White" />
+
+                </Border>
+
+                <Border
+                    Canvas.Left="52"
+                    Canvas.Top="225"
+                    Width="100"
+                    Height="40"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="Gray"
+                    CornerRadius="1"
+                    Cursor="Hand"
+                    Opacity="0.5">
+
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="20"
+                            Opacity="0.0"
+                            ShadowDepth="0"
+                            Color="White" />
+                    </Border.Effect>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding modsOpen}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)"
+                                        From="0.0"
+                                        To="0.6"
+                                        Duration="0:0:0:0.2" />
+
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Opacity)"
+                                        From="0.5"
+                                        To="0.7"
+                                        Duration="0:0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)"
+                                        From="0.6"
+                                        To="0.0"
+                                        Duration="0:0:0:0.2" />
+
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Opacity)"
+                                        From="0.7"
+                                        To="0.5"
+                                        Duration="0:0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Border.Triggers>
+
+                    <Label
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Моды"
+                        FontSize="16"
+                        Foreground="White" />
+
+                </Border>
+
+                <Border
+                    Canvas.Left="160"
+                    Canvas.Top="225"
+                    Width="108"
+                    Height="40"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Background="#FFF95B5B"
+                    CornerRadius="1"
+                    Cursor="Hand"
+                    Opacity="0.5">
+
+                    <Border.Effect>
+                        <DropShadowEffect
+                            BlurRadius="20"
+                            Opacity="0.0"
+                            ShadowDepth="0"
+                            Color="White" />
+                    </Border.Effect>
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding toggleDebug}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <Border.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding isDebug, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                    <DataTrigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                                    FillBehavior="HoldEnd"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    From="#FFF95B5B"
+                                                    To="#0077ff"
+                                                    Duration="0:0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.EnterActions>
+                                    <DataTrigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <ColorAnimation
+                                                    FillBehavior="HoldEnd"
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    From="#0077ff"
+                                                    To="#FFF95B5B"
+                                                    Duration="0:0:0:0.2" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </DataTrigger.ExitActions>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+
+                    <Border.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)"
+                                        From="0.0"
+                                        To="0.6"
+                                        Duration="0:0:0:0.2" />
+
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Opacity)"
+                                        From="0.5"
+                                        To="0.7"
+                                        Duration="0:0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Effect).(DropShadowEffect.Opacity)"
+                                        From="0.6"
+                                        To="0.0"
+                                        Duration="0:0:0:0.2" />
+
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Border.Opacity)"
+                                        From="0.7"
+                                        To="0.5"
+                                        Duration="0:0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Border.Triggers>
+
+                    <Label
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Консоль"
+                        FontSize="16"
+                        Foreground="White" />
+
+                </Border>
+
+                <ProgressBar
+                    Width="320"
+                    Height="5"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Foreground="#FF9DF531"
+                    IsEnabled="{Binding isProcess, UpdateSourceTrigger=PropertyChanged}"
+                    Value="{Binding process, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Border
+                    Canvas.Left="52"
+                    Canvas.Top="148"
+                    Width="216"
+                    Height="40"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="#2e2e49"
+                    CornerRadius="1">
+
+                    <TextBox
+                        Margin="10,0,10,0"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        CaretBrush="Gray"
+                        FontSize="13"
+                        Foreground="White"
+                        SelectedText="Gray"
+                        SelectionBrush="Gray"
+                        Text="{Binding userName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                        <TextBox.ContextMenu>
+                            <ContextMenu>
+                                <ContextMenu.Style>
+                                    <Style TargetType="ContextMenu">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <Grid Background="Transparent" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ContextMenu.Style>
+                            </ContextMenu>
+                        </TextBox.ContextMenu>
+                    </TextBox>
+
+                </Border>
+
+                <Label
+                    Canvas.Left="52"
+                    Canvas.Top="365"
+                    Width="100"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="{Binding version}"
+                    Foreground="#FF444469" />
+
+                <Border
+                    Canvas.Left="52"
+                    Canvas.Top="76"
+                    Width="122"
+                    Height="35"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Background="#2e2e49"
+                    CornerRadius="1">
+
+                    <TextBox
+                        Margin="10,0,10,0"
+                        HorizontalContentAlignment="Left"
+                        VerticalContentAlignment="Center"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        CaretBrush="Gray"
+                        FontSize="13"
+                        Foreground="White"
+                        SelectedText="Gray"
+                        SelectionBrush="Gray"
+                        Text="{Binding ram, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <TextBox.ContextMenu>
+                            <ContextMenu>
+                                <ContextMenu.Style>
+                                    <Style TargetType="{x:Type ContextMenu}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <Grid Background="Transparent" />
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </ContextMenu.Style>
+                            </ContextMenu>
+                        </TextBox.ContextMenu>
+                    </TextBox>
+
+                </Border>
+
+                <Label
+                    Canvas.Left="52"
+                    Canvas.Top="44"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="Выделение ОЗУ"
+                    FontSize="14"
+                    Foreground="#FF444469" />
+
+                <Label
+                    Canvas.Left="179"
+                    Canvas.Top="80"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="(Макс: 8192)"
+                    FontSize="14"
+                    Foreground="#FF444469" />
+
+                <Label
+                    Canvas.Left="52"
+                    Canvas.Top="10"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="Настройки"
+                    FontSize="16"
+                    Foreground="Gray" />
+
+                <Label
+                    Canvas.Left="52"
+                    Canvas.Top="193"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="Остальное"
+                    FontSize="14"
+                    Foreground="#FF444469" />
+
+                <Label
+                    Canvas.Left="10"
+                    Canvas.Top="290"
+                    Width="300"
+                    Height="25"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Content="{Binding state, UpdateSourceTrigger=PropertyChanged}"
+                    Foreground="{Binding stateColor, UpdateSourceTrigger=PropertyChanged}" />
+
+                <Label
+                    Canvas.Left="168"
+                    Canvas.Top="365"
+                    Width="100"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Right"
+                    VerticalContentAlignment="Center"
+                    Content="{Binding stateFiles, UpdateSourceTrigger=PropertyChanged}"
+                    Foreground="#FF444469" />
+
+            </Canvas>
+
+        </Border>
+
+        <!--  Head element  -->
+        <Border
+            Width="320"
+            Height="35"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Background="#2e2e49">
+
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:InvokeCommandAction Command="{Binding baseWindow.moveObj}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Canvas>
+
+                <TextBlock
+                    Canvas.Left="10"
+                    Canvas.Top="4"
+                    Padding="5"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Foreground="DarkGray"
+                    Opacity="0.7">
+                    <Run
+                        FontSize="14"
+                        Foreground="#9df531"
+                        Text="REEN" /> <Run Text="LAUNCHER" />
+                </TextBlock>
+
+                <Image
+                    x:Name="close_second"
+                    Canvas.Left="295"
+                    Canvas.Top="10"
+                    Width="15"
+                    Height="15"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Cursor="Hand"
+                    Opacity="0.0"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Source="/Resources/Icons/icon_close_app_second.png" />
+
+                <Image
+                    Canvas.Left="295"
+                    Canvas.Top="10"
+                    Width="15"
+                    Height="15"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Cursor="Hand"
+                    RenderOptions.BitmapScalingMode="HighQuality"
+                    Source="/Resources/Icons/icon_close_app.png">
+
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                            <i:InvokeCommandAction Command="{Binding baseWindow.closeObj}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Image.Opacity)"
+                                        From="1.0"
+                                        To="0.0"
+                                        Duration="0:0:0:0.2" />
+
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetName="close_second"
+                                        Storyboard.TargetProperty="(Image.Opacity)"
+                                        From="0.0"
+                                        To="1.0"
+                                        Duration="0:0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetProperty="(Image.Opacity)"
+                                        From="0.0"
+                                        To="1.0"
+                                        Duration="0:0:0:0.2" />
+
+                                    <DoubleAnimation
+                                        FillBehavior="HoldEnd"
+                                        Storyboard.TargetName="close_second"
+                                        Storyboard.TargetProperty="(Image.Opacity)"
+                                        From="1.0"
+                                        To="0.0"
+                                        Duration="0:0:0:0.2" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>
+
+                </Image>
+
+            </Canvas>
+
+        </Border>
+
+        <!--  Low element  -->
+
+    </Canvas>
+
+</Window>
